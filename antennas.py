@@ -5,6 +5,8 @@ import networkx as nx
 import dwave_networkx as dnx
 
 # Import matplotlib.pyplot to draw graphs on screen
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
 # Set the solver we're going to use
