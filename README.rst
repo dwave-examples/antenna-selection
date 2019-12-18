@@ -1,3 +1,8 @@
+.. image:: https://circleci.com/gh/dwave-examples/antenna-selection.svg?style=svg
+    :target: https://circleci.com/gh/dwave-examples/antenna-selection
+    :alt: Linux/Mac/Windows build status
+
+=======================
 Antennas Selection Demo
 =======================
 This code was taken from the webinar, *Quantum Programming with the Ocean Tools Suite* [2]_.
