@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
 
-sampler = EmbeddingComposite(DWaveSampler())
+sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))
 
 # Create empty graph
 G = nx.Graph()
