@@ -21,7 +21,8 @@ class IntegrationTests(unittest.TestCase):
     def test_antenna_selection(self):
         output = subprocess.check_output(["python", "antennas.py"])
         output = str(output).upper()
-        print("Example output \n"+ output)
+        if os.getenv('DEBUG_OUTPUT'):
+            print("Example output \n"+ output)
 
         with self.subTest(msg="Verify if output contains 'Maximum independent set size found' \n"):
             self.assertIn("Maximum independent set size found".upper(), output)
