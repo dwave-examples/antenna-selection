@@ -35,7 +35,7 @@ class TestDemo(unittest.TestCase):
         output = subprocess.check_output([sys.executable, demo_file])
         output = str(output).upper()
         if os.getenv('DEBUG_OUTPUT'):
-            print("Example output \n"+ output)
+            print("Example output \n" + output)
 
         with self.subTest(msg="Verify if output contains 'Maximum independent set size found' \n"):
             self.assertIn("Maximum independent set size found".upper(), output)
