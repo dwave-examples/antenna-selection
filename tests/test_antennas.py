@@ -27,3 +27,19 @@ class TestDemo(unittest.TestCase):
 
         demo_file = os.path.join(project_dir, 'antennas.py')
         subprocess.check_output([sys.executable, demo_file])
+
+    def test_antenna_selection(self):
+        """ Verify contents of output """
+        
+        demo_file = os.path.join(project_dir, 'antennas.py')
+        output = subprocess.check_output([sys.executable, demo_file])
+        output = str(output).upper()
+        if os.getenv('DEBUG_OUTPUT'):
+            print("Example output \n" + output)
+
+        with self.subTest(msg="Verify if output contains 'Maximum independent set size found' \n"):
+            self.assertIn("Maximum independent set size found".upper(), output)
+        with self.subTest(msg="Verify if error string contains in output \n"):
+            self.assertNotIn("ERROR", output)
+        with self.subTest(msg="Verify if warning string contains in output \n"):
+            self.assertNotIn("WARNING", output)
