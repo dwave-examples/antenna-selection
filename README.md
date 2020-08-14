@@ -5,7 +5,7 @@
 # Antennas Selection
 
 This code was taken from the webinar, *Quantum Programming with the Ocean Tools
-Suite* [2].
+Suite* [[2]](#2).
 
 The graph below represents antenna coverage. Each of the seven nodes below
 represents an antenna with some amount of coverage. Note that the coverage
@@ -27,7 +27,7 @@ set, with the constraint that no edges be contained in the set.  To solve on a
 D-Wave system, we can reformulate this problem as a quadratic unconstrained
 binary optimization problem (QUBO).  There are a wide variety of applications
 for this problem, such as scheduling and error correcting codes (as shown in
-[1]).
+[[1]](#1)).
 
 ## Usage
 
@@ -54,11 +54,11 @@ function from within the `dwave_networkx` package.
 
 ## Further Information
 
-[1] Sergiy Butenko and Panagote M. Pardalos. "Maximum independent set and
+<a name="1">[1]</a> Sergiy Butenko and Panagote M. Pardalos. "Maximum independent set and
    related problems, with applications." PhD dissertation, University of
    Florida, 2003.
 
-[2] Victoria Goliber, "Quantum Programming with the Ocean Tools Suite",
+<a name="2">[2]</a> Victoria Goliber, "Quantum Programming with the Ocean Tools Suite",
    https://www.youtube.com/watch?v=ckJ59gsFllU
 
 [3] Andrew Lucas, "Ising formulations of many NP problems", [doi:
