@@ -36,7 +36,7 @@ G = nx.Graph()
 G.add_edges_from([(1, 2), (1, 3), (2, 3), (3, 4), (3, 5), (4, 5), (4, 6), (5, 6), (6, 7)])
 
 # Find the maximum independent set, S
-S = dnx.maximum_independent_set(G, sampler=sampler, num_reads=10)
+S = dnx.maximum_independent_set(G, sampler=sampler, num_reads=10, label='Example - Antenna Selection')
 
 # Print the solution for the user
 print('Maximum independent set size found is', len(S))
