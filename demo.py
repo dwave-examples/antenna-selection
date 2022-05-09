@@ -221,7 +221,7 @@ if __name__ == "__main__":
     germany_map = gpd.read_file(file)
 
     # Load existing towers
-    existing_towers = get_existing_towers("locations.txt")
+    existing_towers = get_existing_towers("data/locations.txt")
 
     # Select random points within the country borders
     num_new = 100
