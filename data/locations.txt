@@ -1,0 +1,30 @@
+Holstein Tower, Sierksdorf, Germany	54.074089	10.779130
+Scream (Heide Park), Soltau, Germany	53.027111	9.878511
+Bremerhaven Radar Tower, Bremerhaven, Germany	53.538406	8.580290
+Brocken Transmitter, Weringerode, Germany	51.800194	10.614367
+Großer Inselsberg, Thuringia, Germany	50.851246	10.465513
+Hohenstadt Transmission Tower, Hohenstadt, Germany	48.549782	9.670841
+Jakobsberg Telecommunication Tower, Germany	52.240753	8.944976
+Am Fallturm, Bremen, Germany	53.110493	8.858183
+Funkturm Berlin, Berlin, Germany	52.505032	13.278189
+Hünenburg Telecommunication Tower, Germany	52.014660	8.473570
+Bungsberg Telecommunications Tower, Germany	54.209484	10.724172
+Transmitter Hornisgrinde, Sasbach, Germany	48.604443	8.201944
+Fernmeldeturm Berlin, Schäferberg, Berlin, Germany	52.417847	13.127895
+Fernmeldeturm Mannheim, Germany	49.487034	8.492177
+Fernsehturm Stuttgart, Stuttgart, Germany	48.755749	9.190182
+Florianturm, Dortmund, Germany	51.496593	7.476613
+Fernmeldeturm Münster, Münster, Germany	51.949928	7.666372
+Bremer TV Tower, Bremen, Germany	53.095814	8.791273
+Rheinturm, Dusseldorf, Germany	51.217941	6.761680
+Dresden TV Tower, Dresden, Germany	51.040291	13.838788
+Fernmeldeturm Koblenz, Koblentz, Germany	50.309032	7.569359
+Colonius, Cologne, Germany	50.947086	6.931865
+Heinrich-Hertz-Tower, Hamburg, Germany	53.563400	9.976219
+Telemax Tower, Hanover, Germany	52.393013	9.799687
+Olympiaturm, Olympiapark, Munich, Germany	48.174419	11.553776
+Fernmeldeturm Nürnberg, Germany	49.426113	11.038977
+Europaturm, Frankfurt, Germany	50.135307	8.654652
+Fernsehturm Berlin, Berlin, Germany	52.520817	13.409419
+Rostock, Mecklenburg-Vorpommern, Germany	54.083336	12.108811
+Fernsehturm, Berlin, Germany	52.520645	13.409779
