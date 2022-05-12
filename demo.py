@@ -15,13 +15,14 @@
 from itertools import combinations
 from math import asin, cos, radians, sin, sqrt
 
-import geopandas as gpd
 import matplotlib
 import numpy as np
 import pandas as pd
+import shapefile
 from dimod import Binary, ConstrainedQuadraticModel, quicksum
 from dwave.system import LeapHybridCQMSampler
-from shapely.geometry import Point
+from shapely.geometry import Point, shape
+from shapely.ops import unary_union
 
 try:
     import matplotlib.pyplot as plt
@@ -93,7 +94,8 @@ def gen_new_points(num_new_points, region_map):
     '''
 
     # Load the map boundaries for the region
-    boundary = region_map["geometry"].unary_union
+    polys = [shape(p) for p in region_map.shapes()]
+    boundary = unary_union(polys)
     min_long, min_lat, max_long, max_lat = boundary.bounds
 
     counter = 0
@@ -169,40 +171,36 @@ def visualize(region_map, existing_towers, new_locs, build_sites):
     ax_final.axis('off')
 
     # Draw borders or region
-    region_map.plot(ax = ax, color = '#d3d3d3', zorder=0)
-    region_map.plot(ax = ax_final, color = '#d3d3d3', zorder=0)
+    polys = [shape(p) for p in region_map.shapes()]
+    boundary = unary_union(polys)
+    for geom in boundary.geoms:    
+        xs, ys = geom.exterior.xy    
+        ax.fill(xs, ys, alpha=0.5, fc='#d3d3d3', ec='none', zorder=0)
+        ax_final.fill(xs, ys, alpha=0.5, fc='#d3d3d3', ec='none', zorder=0)
 
     # Draw existing towers
-    gdf_towers = gpd.GeoDataFrame(
-        existing_towers, geometry=gpd.points_from_xy(existing_towers.Longitude, existing_towers.Latitude))
-    gdf_towers.plot(ax=ax, color='r', zorder=2)
-    gdf_towers.plot(ax=ax_final, color='r', zorder=2)
+    ax.scatter(existing_towers.Longitude, existing_towers.Latitude, color='r', zorder=2)
+    ax_final.scatter(existing_towers.Longitude, existing_towers.Latitude, color='r', zorder=2)
 
     # Draw radius around existing towers
     radius = 30
-    towers_radius = gdf_towers.copy()
-    towers_radius['geometry'] = towers_radius['geometry'].buffer(radius/111)
-    towers_radius.plot(ax=ax, color='r', alpha=0.1, zorder=1)
-    towers_radius.plot(ax=ax_final, color='r', alpha=0.1, zorder=1)
+    ax.scatter(existing_towers.Longitude, existing_towers.Latitude, color='r', alpha=0.1, s=radius**2, zorder=1)
+    ax_final.scatter(existing_towers.Longitude, existing_towers.Latitude, color='r', alpha=0.1, s=radius**2, zorder=1)
 
     # Draw new potential build sites on map
     new_locations = pd.DataFrame(new_locs, columns=['Latitude','Longitude'])
-    gdf_new = gpd.GeoDataFrame(
-        new_locations, geometry=gpd.points_from_xy(new_locations.Longitude, new_locations.Latitude))
-    gdf_new.plot(ax=ax, color='y', zorder=8)
+    ax.scatter(new_locations.Longitude, new_locations.Latitude, color='y', zorder=8)
 
     # Draw new selected build sites on map
     new_builds = pd.DataFrame(build_sites, columns=['Latitude','Longitude'])
-    gdf_builds = gpd.GeoDataFrame(
-        new_builds, geometry=gpd.points_from_xy(new_builds.Longitude, new_builds.Latitude))
-    gdf_builds.plot(ax=ax_final, color='b', zorder=8)
+    ax_final.scatter(new_builds.Longitude, new_builds.Latitude, color='b', zorder=8)
 
     # Draw radius around selected build sites
-    build_radius = gdf_builds.copy()
-    build_radius['geometry'] = build_radius['geometry'].buffer(radius/111)
-    build_radius.plot(ax=ax_final, color='b', alpha=0.1, zorder=1)
+    ax_final.scatter(new_builds.Longitude, new_builds.Latitude, color='b', alpha=0.1, s=radius**2, zorder=8)
 
     # Make the figure look good
+    ax.axis('scaled')
+    ax_final.axis('scaled')
     ax.set_title("Potential Sites", fontsize = 24)
     ax_final.set_title("Determined Sites", fontsize = 24)
 
@@ -216,9 +214,8 @@ if __name__ == "__main__":
 
     # Load and draw country map from geojson file
     print("\nLoading map and scenario...")
-    filename = "data/germany_states.geojson"
-    file = open(filename)
-    germany_map = gpd.read_file(file)
+    shp_file = "data/germany_states.shp"
+    germany_map = shapefile.Reader(shp_file, encoding='CP1252')
 
     # Load existing towers
     existing_towers = get_existing_towers("data/locations.txt")
@@ -245,7 +242,6 @@ if __name__ == "__main__":
         print("\nNo feasible solutions found.")
         exit()
 
-    # soln = [key for key, val in sample.items() if val == 1.0]
     build_sites = [new_locs[key] for key, val in sample.items() if val == 1.0]
     print("\nSelected", len(build_sites), "build sites.")
 
