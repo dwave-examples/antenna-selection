@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  dwave: dwave/orb-examples@2
+  dwave: dwave/orb-examples@dev:996e64d
 
 workflows:
   version: 2.1
