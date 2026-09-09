@@ -15,13 +15,13 @@
 # Import networkx for graph tools
 import networkx as nx
 
-# Import dwave_networkx for d-wave graph tools/functions
-import dwave_networkx as dnx
-
 # Import matplotlib.pyplot to draw graphs on screen
 import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
+
+# Import dwave.graphs for D-Wave graph tools/functions
+from dwave.graphs import maximum_independent_set
 
 # Set the solver we're going to use
 from dwave.system.samplers import DWaveSampler
@@ -36,7 +36,7 @@ G = nx.Graph()
 G.add_edges_from([(1, 2), (1, 3), (2, 3), (3, 4), (3, 5), (4, 5), (4, 6), (5, 6), (6, 7)])
 
 # Find the maximum independent set, S
-S = dnx.maximum_independent_set(G, sampler=sampler, num_reads=10, label='Example - Antenna Selection')
+S = maximum_independent_set(G, sampler=sampler, num_reads=10, label='Example - Antenna Selection')
 
 # Print the solution for the user
 print('Maximum independent set size found is', len(S))

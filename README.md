@@ -53,7 +53,7 @@ different antenna network.
 
 The program `antennas.py` creates a graph using the Python package `networkx`,
 and then uses the Ocean software tools to run the `maximum_independent_set`
-function from within the `dwave_networkx` package.
+function from within the `dwave-graphs` package.
 
 ## Real-World Scenario
 
